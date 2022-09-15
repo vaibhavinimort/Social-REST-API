@@ -30,7 +30,7 @@
                type: Array,
                default: ""
            },
-           followins: {
+           followings: {
                type: Array,
                default: []
            },

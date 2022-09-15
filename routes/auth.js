@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 
 //Resgister
 router.post("/register", async(req, res) => {
-
     const { username, email, password } = req.body;
-
     const newUser = new User({ username, email, password });
 
     // const newUser = new User({ username, email, password } = req.body);
@@ -21,7 +19,6 @@ router.post("/register", async(req, res) => {
             email: req.body.email,
             password: hashedPassword
         });
-
 
         //save user and  respond
         const user = await newUser.save();
