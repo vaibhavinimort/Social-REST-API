@@ -17,7 +17,7 @@
                type: Array,
                default: [],
            },
-       }, { timestamp: true }
+       }, { timestamps: true }
 
    );
 
