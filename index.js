@@ -9,7 +9,6 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const cors = require('cors');
 
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
