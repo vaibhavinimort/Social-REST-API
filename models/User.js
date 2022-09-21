@@ -3,6 +3,7 @@
    const userSchema = new mongoose.Schema({
            username: {
                type: String,
+               index: true,
                require: true,
                min: 3,
                max: 20,
@@ -10,6 +11,7 @@
            },
            email: {
                type: String,
+               index: true,
                required: true,
                min: 6
            },
@@ -56,7 +58,8 @@
            }
        },
 
-       { timestamp: true });
+       { timestamps: true }
+   );
 
 
    module.exports = mongoose.model("User", userSchema);
