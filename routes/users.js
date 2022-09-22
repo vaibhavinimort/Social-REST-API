@@ -15,7 +15,6 @@ router.put("/:id", async(req, res) => {
             }
         }
         try {
-            console.log("id", req.params.id)
             const user = await User.findByIdAndUpdate(req.params.id, {
                 $set: req.body,
             });
@@ -33,8 +32,7 @@ router.put("/:id", async(req, res) => {
 router.delete("/:id", async(req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
         try {
-            console.log("id", req.params.id)
-            const user = await User.findByIdAndDelete({ _id: req.params.id });
+            await User.findByIdAndDelete(req.params.id);
             res.status(200).json("your account has been deleted")
         } catch (err) {
             return res.status(500).json(err);
@@ -47,7 +45,7 @@ router.delete("/:id", async(req, res) => {
 //get a user
 router.get("/", async(req, res) => {
     const userId = req.query.userId;
-    const username = req.query.userId;
+    const username = req.query.username;
     try {
         const user = userId ?
             await User.findById(userId) :
@@ -58,6 +56,15 @@ router.get("/", async(req, res) => {
         res.status(500).json(err);
     }
 });
+
+//get friends
+// router.get("/friends/:userId", (req, res) => {
+//     try {
+//         const user = await User.findById
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// })
 
 //follow user
 router.put("/:id/follow", async(req, res) => {
