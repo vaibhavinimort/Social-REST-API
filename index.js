@@ -51,6 +51,6 @@ app.use("/api/posts", postRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 
-app.listen(8800, () => {
+app.listen(80, () => {
     console.log('Backened sever is running')
 });
