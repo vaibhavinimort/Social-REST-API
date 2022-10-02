@@ -107,8 +107,10 @@ router.put("/:id/unfollow", async(req, res) => {
         try {
             //already following user in db
             const user = await User.findById(req.params.id);
+
             //login user requested to follower
             const currentUser = await User.findById(req.body.userId);
+
             if (user.followers.includes(req.body.userId)) {
                 await user.updateOne({ $pull: { followers: req.body.userId } });
                 await currentUser.updateOne({ $pull: { followings: req.params.id } });
@@ -123,4 +125,15 @@ router.put("/:id/unfollow", async(req, res) => {
         res.status(403).json("you cant unfollow yourself")
     }
 });
+
+//suggested friends
+
+router.get("/:id/suggestedFriends", async(req, res) => {
+    const currentUser = await User.findById(req.params.id);
+    const alreadyFollowed = [currentUser._id, ...currentUser.followings];
+    const suggestedUsers = await User.find({ _id: { $nin: alreadyFollowed } }).limit(10);
+    //console.log(suggestedUsers);
+    res.status(200).json(suggestedUsers);
+});
+
 module.exports = router;

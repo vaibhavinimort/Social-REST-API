@@ -30,7 +30,7 @@ router.get("/:userId", async(req, res) => {
 
 //get conve includes two userId
 
-router.get("/find/:firstUserId/:secondUserId", async(req, rse) => {
+router.get("/find/:firstUserId/:secondUserId", async(req, res) => {
     try {
         const conversation = await Conversation.findOne({
             members: { $all: [req.params.firstUserId, req.params.secondUserId] },
