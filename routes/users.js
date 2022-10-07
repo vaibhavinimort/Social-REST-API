@@ -58,10 +58,9 @@ router.get("/", async(req, res) => {
 });
 
 //get friends
-router.get("/friends/:userId", async(req, res) => {
+router.get("/friends/:id", async(req, res) => {
     try {
-        const user = await User.findById(req.params.userId);
-        console.log(user);
+        const user = await User.findById(req.params.id);
         const friends = await Promise.all(
             user.followings.map((friendId) => {
                 return User.findById(friendId);
